@@ -29,4 +29,4 @@
 
   
 
-# <p align="center" style="color:#cb3349" > [كـــروب  مــود](https://telegram.me/s00f4) <br>
+# <p align="center" style="color:#cb3349" > [كـــروب  مــود](https://t.me/joinchat/APVPGU43ZnxKwJGnuBKDww) <br>
