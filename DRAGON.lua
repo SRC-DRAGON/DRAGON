@@ -2279,18 +2279,20 @@ end
 
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
-≪━━━━━━━━━━━━━≫
- ✹∫ ↬DRAGON TEAM
  ≪━━━━━━━━━━━━━≫
- ✹∫ ↬[Channel DRAGON](t.me/S0DRG) 
-≪━━━━━━━━━━━━━≫
- ✹∫ ↬[Information](t.me/S0DRG)
-≪━━━━━━━━━━━━━≫
- ✹∫ ↬[DEVELOPER](t.me/S00F4)
-≪━━━━━━━━━━━━━≫
- ✹∫ ↬[The way his inauguration](https://t.me/S0DRG/365)
-≪━━━━━━━━━━━━━≫
- ✹∫ ↬[To talk to us](t.me/byroo9)
+✹∫ ↬SOURCE DRAGON
+ ≪━━━━━━━━━━━━━≫
+✹∫ ↬[Channel DRAGON](t.me/S0DRG) 
+ ≪━━━━━━━━━━━━━≫
+✹∫ ↬[Information](t.me/S0DRG)
+ ≪━━━━━━━━━━━━━≫
+✹∫ ↬[DEVELOPER](t.me/s00f4)
+ ≪━━━━━━━━━━━━━≫
+✹∫ ↬[PROGRAMMER](t.me/mndzr)
+ ≪━━━━━━━━━━━━━≫
+✹∫ ↬[The way his inauguration](https://t.me/S0DRG/365)
+ ≪━━━━━━━━━━━━━≫
+✹∫ ↬[To talk to us](t.me/byroo9)
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
