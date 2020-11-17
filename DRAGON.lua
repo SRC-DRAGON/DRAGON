@@ -9724,7 +9724,7 @@ https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. 
 end
 end
 end
-if text == "شنو رئيك بهذا" or text == "شنو رئيك بهذ" then
+if text == "شنو رئيك بهذا" or text == "شنو رئيك بهذ" or text == "شنو رايك بهذا" then
 if not database:get(bot_id..'lock:add'..msg.chat_id_) then
 local texting = {"ادب سسز يباوع علي بنات 😂🥺"," مو خوش ولد 😶","زاحف وما احبه 😾😹"}
 send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
