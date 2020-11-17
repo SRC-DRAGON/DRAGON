@@ -980,12 +980,12 @@ end
 if text == 'تحديث السورس ✹' and SudoBot(msg) then 
 os.execute('rm -rf DRAGON.lua')
 os.execute('wget https://raw.githubusercontent.com/SRC-DRAGON/DRAGON/main/DRAGON.lua')
-send(msg.chat_id_, msg.id_,' ✹∫ تم تحديث السورس \n ✹∫ لديك اخر اصدار لسورس دراكون\n ✹∫ الاصدار » { 1.3v}')
+send(msg.chat_id_, msg.id_,' ✹∫ تم تحديث السورس \n ✹∫ لديك اخر اصدار لسورس دراكون\n ✹∫ الاصدار » { 1.0v}')
 dofile('DRAGON.lua')  
 end
 if text == 'الاصدار ✹' and SudoBot(msg) then 
 database:del(bot_id..'Srt:Bot') 
-send(msg.chat_id_, msg.id_,' ✹∫ اصدار سورس دراكون \n ✹∫ الاصدار »{ 1.3v}')
+send(msg.chat_id_, msg.id_,' ✹∫ اصدار سورس دراكون \n ✹∫ الاصدار »{ 1.0v}')
 end
 if text == "ضع اسم للبوت ✹" and SudoBot(msg) then  
 database:setex(bot_id..'Set:Name:Bot'..msg.sender_user_id_,300,true) 
@@ -2227,7 +2227,7 @@ return false
 end
 os.execute('rm -rf DRAGON.lua')
 os.execute('wget https://raw.githubusercontent.com/SRC-DRAGON/DRAGON/main/DRAGON.lua')
-send(msg.chat_id_, msg.id_,' ✹∫ تم تحديث السورس \n ✹∫ لديك اخر اصدار لسورس دراكون\n ✹∫ الاصدار » { 1.3v}')
+send(msg.chat_id_, msg.id_,' ✹∫ تم تحديث السورس \n ✹∫ لديك اخر اصدار لسورس دراكون\n ✹∫ الاصدار » { 1.0v}')
 dofile('DRAGON.lua')  
 end
 
