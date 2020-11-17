@@ -2292,7 +2292,7 @@ Text = [[
  ≪━━━━━━━━━━━━━≫
 ✹∫ ↬[The way his inauguration](https://t.me/S0DRG/365)
  ≪━━━━━━━━━━━━━≫
-✹∫ ↬[To talk to us](t.me/byroo9)
+✹∫ ↬[To talk to us](t.me/S0DRGbot)
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
