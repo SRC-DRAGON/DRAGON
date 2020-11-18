@@ -7892,8 +7892,8 @@ send(msg.chat_id_, msg.id_,' ✹∫ لا تستطيع استخدام البوت 
 end
 return false
 end
-if num > 100 then 
-send(msg.chat_id_, msg.id_,'✹∫تستطيع التنظيف ل100 رساله كحد اقصى') 
+if num > 1000 then 
+send(msg.chat_id_, msg.id_,'✹∫تستطيع التنظيف ل1000 رساله كحد اقصى') 
 return false  
 end  
 local msgm = msg.id_
