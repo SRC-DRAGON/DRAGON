@@ -692,7 +692,7 @@ sendText(msg.chat_id_,Text,0,'md')
 return false  
 end  
 if type == 'mute' then
-Text = '\n ✹∫ العضــو » '..Name..'\n ✹∫ قام بالتكرار هنا وتم طرده '  
+Text = '\n ✹∫ العضــو » '..Name..'\n ✹∫ قام بالتكرار هنا وتم كتمه '  
 sendText(msg.chat_id_,Text,0,'md')
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_) 
 msgm = msg.id_
