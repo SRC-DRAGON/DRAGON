@@ -8442,19 +8442,19 @@ return false
 end  
 end
 if text and text:match("^(.*)$") then
-if redis:get(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_, '\n⌔︙ارسل لي الرد لاضافته\n⌔︙تستطيع اضافة ← { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n⌔︙تستطيع ايضا اضافة :\n⌔︙`#username` » معرف المستخدم \n⌔︙`#msgs` » عدد الرسائل\n⌔︙`#name` » اسم المستخدم\n⌔︙`#id` » ايدي المستخدم\n⌔︙`#stast` » موقع المستخدم \n⌔︙`#edit` » عدد السحكات ')
-redis:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,"true1")
-redis:set(bot_id.."Text:Manager"..msg.sender_user_id_..":"..msg.chat_id_, text)
-redis:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-redis:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-redis:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-redis:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-redis:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-redis:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-redis:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-redis:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
-redis:sadd(bot_id.."List:Manager"..msg.chat_id_.."", text)
+if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
+send(msg.chat_id_, msg.id_,' ✹∫ ارسل الرد الذي تريد اضافته')
+database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
+database:set(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_, text)
+database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
+database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
+database:sadd(bot_id..'List:Manager'..msg.chat_id_..'', text)
 return false end
 end
 if text and text:match("^(.*)$") then
