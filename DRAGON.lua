@@ -8483,7 +8483,7 @@ send(msg.chat_id_, msg.id_,' ✹∫ لا تستطيع استخدام البوت 
 end
 return false
 end
-send(msg.chat_id_, msg.id_,' ✹∫ ارسل الكلمه التي تريد اضافتها')
+send(msg.chat_id_, msg.id_, '\n⌔︙ارسل لي الرد لاضافته\n⌔︙تستطيع اضافة ← { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n⌔︙تستطيع ايضا اضافة :\n⌔︙`#username` » معرف المستخدم \n⌔︙`#msgs` » عدد الرسائل\n⌔︙`#name` » اسم المستخدم\n⌔︙`#id` » ايدي المستخدم\n⌔︙`#stast` » موقع المستخدم \n⌔︙`#edit` » عدد السحكات ')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
@@ -8513,44 +8513,6 @@ local document = database:get(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
 local audio = database:get(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
-send(msg.chat_id_, msg.id_,"["..text.."]")
-elseif text == "اضف رد" and Owner(msg) then
-send(msg.chat_id_, msg.id_,"⌔︙ارسل الان الكلمه لاضافتها في ردود المدير ")
-redis:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
-elseif text == "حذف رد" and Owner(msg) then
-send(msg.chat_id_, msg.id_,"⌔︙ارسل الان الكلمه لحذفها من ردود المدير")
-redis:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,"true2")
-elseif text == ("مسح ردود المطور") and Dev_rakon(msg) then 
-local list = redis:smembers(bot_id.."List:Rd:Sudo")
-for k,v in pairs(list) do
-redis:del(bot_id.."Add:Rd:Sudo:Gif"..v)   
-redis:del(bot_id.."Add:Rd:Sudo:vico"..v)   
-redis:del(bot_id.."Add:Rd:Sudo:stekr"..v)     
-redis:del(bot_id.."Add:Rd:Sudo:Text"..v)   
-redis:del(bot_id.."Add:Rd:Sudo:Photo"..v)
-redis:del(bot_id.."Add:Rd:Sudo:Video"..v)
-redis:del(bot_id.."Add:Rd:Sudo:File"..v)
-redis:del(bot_id.."Add:Rd:Sudo:Audio"..v)
-redis:del(bot_id.."List:Rd:Sudo")
-end
-if text and text:match("^(.*)$") then
-if redis:get(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_, '\n⌔︙ارسل لي الرد لاضافته\n⌔︙تستطيع اضافة ← { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n⌔︙تستطيع ايضا اضافة :\n⌔︙`#username` » معرف المستخدم \n⌔︙`#msgs` » عدد الرسائل\n⌔︙`#name` » اسم المستخدم\n⌔︙`#id` » ايدي المستخدم\n⌔︙`#stast` » موقع المستخدم \n⌔︙`#edit` » عدد السحكات ')
-redis:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,"true1")
-redis:set(bot_id.."Text:Manager"..msg.sender_user_id_..":"..msg.chat_id_, text)
-redis:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-redis:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-redis:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-redis:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-redis:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-redis:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-redis:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-redis:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
-redis:sadd(bot_id.."List:Manager"..msg.chat_id_.."", text)
-return false end
-end
-----------------------------------------------------------------
----------------
 if text1 then 
 send(msg.chat_id_, msg.id_, text1)
 database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
