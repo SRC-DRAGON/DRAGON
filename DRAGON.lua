@@ -8497,7 +8497,8 @@ redis:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
 redis:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
 redis:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
 redis:sadd(bot_id.."List:Manager"..msg.chat_id_.."", text)
-return false end
+return false 
+end
 end
 if text == 'حذف رد' and Manager(msg) then
 if AddChannel(msg.sender_user_id_) == false then
