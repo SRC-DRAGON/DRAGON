@@ -969,11 +969,11 @@ HardDisk=`df -lh | awk '{if ($6 == "/") { print $3"/"$2" ~ {"$5"}" }}'`
 CPUPer=`top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}'`
 uptime=`uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes."}'`
 echo '⇗ نظام التشغيل ⇖•\n*»» '"$linux_version"'*' 
-echo '*———————————~*\n✺✔{ الذاكره العشوائيه } ⇎\n*»» '"$memUsedPrc"'*'
-echo '*———————————~*\n✺✔{ وحـده الـتـخـزيـن } ⇎\n*»» '"$HardDisk"'*'
-echo '*———————————~*\n✺✔{ الـمــعــالــج } ⇎\n*»» '"`grep -c processor /proc/cpuinfo`""Core ~ {$CPUPer%} "'*'
-echo '*———————————~*\n✺✔{ الــدخــول } ⇎\n*»» '`whoami`'*'
-echo '*———————————~*\n✺✔{ مـده تـشغيـل الـسـيـرفـر }⇎\n*»» '"$uptime"'*'
+echo '*———————————~*\n℘✔{ الذاكره العشوائيه } ⇎\n*»» '"$memUsedPrc"'*'
+echo '*———————————~*\n℘✔{ وحـده الـتـخـزيـن } ⇎\n*»» '"$HardDisk"'*'
+echo '*———————————~*\n℘✔{ الـمــعــالــج } ⇎\n*»» '"`grep -c processor /proc/cpuinfo`""Core ~ {$CPUPer%} "'*'
+echo '*———————————~*\n℘✔{ الــدخــول } ⇎\n*»» '`whoami`'*'
+echo '*———————————~*\n℘✔{ مـده تـشغيـل الـسـيـرفـر }⇎\n*»» '"$uptime"'*'
 ]]):read('*all'))  
 end
 
