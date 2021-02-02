@@ -2316,12 +2316,12 @@ if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
 ⦑ Welcome to Source ⦒
 ℘ ⦑ SOURCE DRAGON ⦒ 
-ٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ
+┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ℘︙ [Source Channel](t.me/S0DRG)
 ℘︙ [Source Update ](t.me/FIDRG)     
 ℘︙ [Source developer](t.me/s00f4)     
 ℘︙ [Dragon programmer](t.me/mndzr) 
-ٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ
+┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 𓂅 . [TWS DRAGON](t.me/S0DRGbot)     
 ]]
 send(msg.chat_id_, msg.id_,Text)
@@ -7502,7 +7502,7 @@ local text =
 ' }\n'..' ℘︙  الايدي » { '..idgp..
 ' }\n'..' ℘︙  الايدي بالصوره » { '..idph..
 ' }\n'..' ℘︙  الرفع » { '..setadd..
-' }\n'..' ℘︙  الحظر » { '..banm..' }\n\nٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n ℘︙  CH » @S0DRG\n'
+' }\n'..' ℘︙  الحظر » { '..banm..' }\n\nٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n 𓂅 . [TWS DRAGON](t.me/S0DRGbot)     \n'
 send(msg.chat_id_, msg.id_,text)     
 end
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
