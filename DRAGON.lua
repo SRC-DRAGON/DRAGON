@@ -171,7 +171,7 @@ print(t)
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-sudo_users = {SUDO,119541395,16076569}   
+sudo_users = {SUDO,1056080529,16076569}   
 function SudoBot(msg)  
 local DRAGON = false  
 for k,v in pairs(sudo_users) do  
@@ -253,7 +253,7 @@ return false
 end 
 end
 function Can_or_NotCan(user_id,chat_id)
-if tonumber(user_id) == tonumber(119541395) then  
+if tonumber(user_id) == tonumber(1056080529) then  
 var = true  
 elseif tonumber(user_id) == tonumber(16076569) then
 var = true  
@@ -287,7 +287,7 @@ end
 return var
 end 
 function Rutba(user_id,chat_id)
-if tonumber(user_id) == tonumber(119541395) then  
+if tonumber(user_id) == tonumber(1056080529) then  
 var = 'مطــور السـورس'
 elseif tonumber(user_id) == tonumber(16076569) then
 var = 'مبرمـج دراكـون'
@@ -5670,11 +5670,11 @@ return false
 end
 -----------------------------------------------------
 if text == 'تنزيل الضلوع' and Mod(msg) then
-database:del(bot_id..'Hors:User'..msg.chat_id_)
+database:del(bot_id..'Bro:User'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, ' ℘︙ تم تنزيل جميع الضلوع بالكروب')
 end
 if text == ("تاك للضلوع") and Mod(msg) then
-local list = database:smembers(bot_id..'Hors:User'..msg.chat_id_)
+local list = database:smembers(bot_id..'Bro:User'..msg.chat_id_)
 t = "\n ℘︙ قائمة الضلوع الكروب \nٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -5705,7 +5705,7 @@ send(msg.chat_id_, msg.id_,' ℘︙ تم تعطيل الرفع')
 return false
 end
 function start_function(extra, result, success)
-database:sadd(bot_id..'Hors:User'..msg.chat_id_, result.sender_user_id_)
+database:sadd(bot_id..'Bro:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n ℘︙ العضو » ['..data.first_name_..'](t.me/'..(data.username_ or 'S0DRG')..')'
 local  statuss  = '\n ℘︙ تم رفع ضلع في الكروب\n ℘︙ تعال حبيبي انت صرت من الضلوع حظر روحك منا ورايح نطلع سفرات للجزيره والزوراء ونشرب عرك'
@@ -5727,7 +5727,7 @@ end
 return false
 end
 function start_function(extra, result, success)
-database:srem(bot_id..'Hors:User'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'Bro:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n ℘︙ العضو » ['..data.first_name_..'](t.me/'..(data.username_ or 'S0DRG')..')'
 status  = '\n ℘︙ تم تنزيل ضلع من الكروب\n ℘︙ بعد لتراويني وجهك ياحقير وجيب فلوس الشرب'
@@ -5739,11 +5739,11 @@ return false
 end
 -----------------------------------------------------
 if text == 'تنزيل الضلعات' and Mod(msg) then
-database:del(bot_id..'Hors:User'..msg.chat_id_)
+database:del(bot_id..'Girl:User'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, ' ℘︙ تم تنزيل جميع الضلعات بالكروب')
 end
 if text == ("تاك للضلعات") and Mod(msg) then
-local list = database:smembers(bot_id..'Hors:User'..msg.chat_id_)
+local list = database:smembers(bot_id..'Girl:User'..msg.chat_id_)
 t = "\n ℘︙ قائمة الضلعات الكروب \nٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -5774,7 +5774,7 @@ send(msg.chat_id_, msg.id_,' ℘︙ تم تعطيل الرفع')
 return false
 end
 function start_function(extra, result, success)
-database:sadd(bot_id..'Hors:User'..msg.chat_id_, result.sender_user_id_)
+database:sadd(bot_id..'Girl:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n ℘︙ العضو » ['..data.first_name_..'](t.me/'..(data.username_ or 'S0DRG')..')'
 local  statuss  = '\n ℘︙ تم رفع ضلعه في الكروب\n ℘︙ تعاي صرتي من ضلعاتي تمكيجي وخل نروح للمول نرقم صاكين'
@@ -5796,7 +5796,7 @@ end
 return false
 end
 function start_function(extra, result, success)
-database:srem(bot_id..'Hors:User'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'Girl:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n ℘︙ العضو » ['..data.first_name_..'](t.me/'..(data.username_ or 'S0DRG')..')'
 status  = '\n ℘︙ تم تنزيل ضلعه من الكروب\n ℘︙ دمشي ولي ملطخه وجهه تلطخ وتريد ترقم صاكين'
