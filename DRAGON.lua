@@ -881,12 +881,13 @@ local bl = ' ℘︙ اهلا عزيزي آلمـطـور\n ℘︙ آنت آلم�
 local keyboard = {
 {'الاحصائيات ℘'},
 {'تعطيل التواصل ℘','تفعيل التواصل ℘'},
-{'ضع اسم للبوت ℘','المطورين ℘','قائمه العام ℘'},
+{'ضع اسم للبوت ℘','قائمه العام ℘','قائمه الكتم العام ℘'},
+{'🐉 حصريات و تحديثات دراكـون 🐉'},
+{'المطورين ℘','الثانويين ℘'},
 {'المشتركين ℘','الكروبات ℘'},
-{'ضع كليشه ستارت ℘','حذف كليشه ستارت ℘'},
-{'اذاعه ℘','اذاعه خاص ℘'},
-{'اذاعه بالتثبيت ℘','قائمه الكتم العام ℘'},
 {'تغير رساله الاشتراك','حذف رساله الاشتراك ℘','تغير الاشتراك'},
+{'ضع كليشه ستارت ℘','حذف كليشه ستارت ℘'},
+{'اذاعه ℘','اذاعه خاص ℘','اذاعه بالتثبيت ℘'},
 {'اذاعه بالتوجيه ℘','اذاعه بالتوجيه خاص ℘'},
 {'تفعيل الاشتراك الاجباري ℘','تعطيل الاشتراك الاجباري ℘'},
 {'الاشتراك الاجباري ℘','وضع قناة الاشتراك ℘'},
@@ -1068,12 +1069,12 @@ end
 if text == 'تحديث السورس ℘' and DevSoFi(msg) then 
 os.execute('rm -rf DRAGON.lua')
 os.execute('wget https://raw.githubusercontent.com/SRC-DRAGON/DRAGON/main/DRAGON.lua')
-send(msg.chat_id_, msg.id_,' ℘︙ تم تحديث السورس \n ℘︙ لديك اخر اصدار لسورس دراكون\n ℘︙ الاصدار » { v 1.5}')
+send(msg.chat_id_, msg.id_,' ℘︙ تم تحديث السورس \n ℘︙ لديك اخر اصدار لسورس دراكون\n ℘︙ الاصدار » { v 1.6 }')
 dofile('DRAGON.lua')  
 end
 if text == 'الاصدار ℘' and DevSoFi(msg) then 
 database:del(bot_id..'Srt:Bot') 
-send(msg.chat_id_, msg.id_,' ℘︙ اصدار سورس دراكون \n ℘︙ الاصدار »{ v 1.5}')
+send(msg.chat_id_, msg.id_,' ℘︙ اصدار سورس دراكون \n ℘︙ الاصدار »{ v 1.6 }')
 end
 if text == "ضع اسم للبوت ℘" and DevSoFi(msg) then  
 database:setex(bot_id..'Set:Name:Bot'..msg.sender_user_id_,300,true) 
@@ -1117,6 +1118,38 @@ t = " ℘︙ لا يوجد مطورين"
 end
 send(msg.chat_id_, msg.id_, t)
 end
+if text == ("الثانويين ℘") and DevSoFi(msg) then
+local list = database:smembers(bot_id..'Dev:SoFi:2')
+t = "\n ℘︙ قائمة الثانويين \nٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n"
+for k,v in pairs(list) do
+local username = database:get(bot_id.."user:Name" .. v)
+if username then
+t = t..""..k.."- ([@"..username.."])\n"
+else
+t = t..""..k.."- ("..v..")\n"
+end
+end
+if #list == 0 then
+t = " ℘︙ لا يوجد ثانويين"
+end
+send(msg.chat_id_, msg.id_, t)
+end
+-------------
+if text == "🐉 حصريات و تحديثات دراكـون 🐉" and DevSoFi(msg) then  
+local updatech =[[
+*يجب عليك الاشتراك في قناة*
+*تحديثات وشروحات سورس دراكون*
+*قم بالضغط في الاسفل ليحولك الئ القناة*
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '📂┇𝙳𝚁𝙰𝙶𝙾𝙽 𝚄𝙿𝙳𝙰𝚃𝙴𝚂.', url="t.me/FIDRG"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(updatech).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+return false
+end
+-----------
 if text == ("قائمه العام ℘") and DevSoFi(msg) then
 local list = database:smembers(bot_id..'GBan:User')
 t = "\n ℘︙ قائمه المحظورين عام \nٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n"
@@ -2315,7 +2348,7 @@ return false
 end
 os.execute('rm -rf DRAGON.lua')
 os.execute('wget https://raw.githubusercontent.com/SRC-DRAGON/DRAGON/main/DRAGON.lua')
-send(msg.chat_id_, msg.id_,' ℘︙ تم تحديث السورس \n ℘︙ لديك اخر اصدار لسورس دراكون\n ℘︙ الاصدار » { v 1.5}')
+send(msg.chat_id_, msg.id_,' ℘︙ تم تحديث السورس \n ℘︙ لديك اخر اصدار لسورس دراكون\n ℘︙ الاصدار » { v 1.6 }')
 dofile('DRAGON.lua')  
 end
 
@@ -3022,6 +3055,42 @@ database:set(bot_id..'Cick:all'..msg.chat_id_,true)
 Text = '\n ℘︙ تم تعطيل امر @all'
 else
 Text = '\n ℘︙ بالتاكيد تم تعطيل امر @all'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تفعيل كول' and CoSu(msg) then   
+if database:get(bot_id..'Speak:after:me'..msg.chat_id_) then
+Text = ' ℘︙ تم تفعيل امر كول'
+database:del(bot_id..'Speak:after:me'..msg.chat_id_)  
+else
+Text = ' ℘︙ بالتاكيد تم تفعيل امر كول'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تعطيل كول' and CoSu(msg) then  
+if not database:get(bot_id..'Speak:after:me'..msg.chat_id_) then
+database:set(bot_id..'Speak:after:me'..msg.chat_id_,true)  
+Text = '\n ℘︙ تم تعطيل امر كول'
+else
+Text = '\n ℘︙ بالتاكيد تم تعطيل امر كول'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تفعيل غنيلي' and CoSu(msg) then   
+if database:get(bot_id..'sing:for:me'..msg.chat_id_) then
+Text = ' ℘︙ تم تفعيل امر غنيلي الان ارسل غنيلي'
+database:del(bot_id..'sing:for:me'..msg.chat_id_)  
+else
+Text = ' ℘︙ بالتاكيد تم تفعيل امر غنيلي تستطيع ارسال غنيلي'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تعطيل غنيلي' and CoSu(msg) then  
+if not database:get(bot_id..'sing:for:me'..msg.chat_id_) then
+database:set(bot_id..'sing:for:me'..msg.chat_id_,true)  
+Text = '\n ℘︙ تم تعطيل امر غنيلي'
+else
+Text = '\n ℘︙ بالتاكيد تم تعطيل امر غنيلي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
@@ -9352,7 +9421,7 @@ tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumbe
 end
 
 if text == ("مسح ردود المطور") and DevSoFi(msg) then 
-local list = database:smembers(bot_id..'List:Rd:Sudo')
+local list = database:smembers(bot_id.."List:Rd:Sudo")
 for k,v in pairs(list) do
 database:del(bot_id.."Add:Rd:Sudo:Gif"..v)   
 database:del(bot_id.."Add:Rd:Sudo:vico"..v)   
@@ -9362,43 +9431,42 @@ database:del(bot_id.."Add:Rd:Sudo:Photo"..v)
 database:del(bot_id.."Add:Rd:Sudo:Video"..v)
 database:del(bot_id.."Add:Rd:Sudo:File"..v)
 database:del(bot_id.."Add:Rd:Sudo:Audio"..v)
-database:del(bot_id..'List:Rd:Sudo')
+database:del(bot_id.."List:Rd:Sudo")
 end
-send(msg.chat_id_, msg.id_," ℘︙ تم مسح ردود المطور")
+send(msg.chat_id_, msg.id_,"℘︙تم مسح ردود المطور")
 end
-
 if text == ("ردود المطور") and DevSoFi(msg) then 
-local list = database:smembers(bot_id..'List:Rd:Sudo')
-text = "\n ℘︙ قائمة ردود المطور \nٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n"
+local list = database:smembers(bot_id.."List:Rd:Sudo")
+text = "\n℘︙قائمة ردود المطور \n — — — — — — — — —\n"
 for k,v in pairs(list) do
 if database:get(bot_id.."Add:Rd:Sudo:Gif"..v) then
-db = 'متحركه'
+db = "متحركه 🎭"
 elseif database:get(bot_id.."Add:Rd:Sudo:vico"..v) then
-db = 'بصمه'
+db = "بصمه 📢"
 elseif database:get(bot_id.."Add:Rd:Sudo:stekr"..v) then
-db = 'ملصق'
+db = "ملصق 🏷"
 elseif database:get(bot_id.."Add:Rd:Sudo:Text"..v) then
-db = 'رساله'
+db = "رساله ✉"
 elseif database:get(bot_id.."Add:Rd:Sudo:Photo"..v) then
-db = 'صوره'
+db = "صوره 👤"
 elseif database:get(bot_id.."Add:Rd:Sudo:Video"..v) then
-db = 'فيديو'
+db = "فيديو 📹"
 elseif database:get(bot_id.."Add:Rd:Sudo:File"..v) then
-db = 'ملف'
+db = "ملف 📁"
 elseif database:get(bot_id.."Add:Rd:Sudo:Audio"..v) then
-db = 'اغنيه'
+db = "اغنيه 🎵"
 end
-text = text..""..k.." >> ("..v..") » {"..db.."}\n"
+text = text..""..k.." >> ("..v..") -› {"..db.."}\n"
 end
 if #list == 0 then
-text = " ℘︙ لا يوجد ردود للمطور"
+text = "℘︙لا يوجد ردود للمطور"
 end
-send(msg.chat_id_, msg.id_,'['..text..']')
+send(msg.chat_id_, msg.id_,"["..text.."]")
 end
 if text or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ or msg.content_.audio_ or msg.content_.document_ or msg.content_.photo_ or msg.content_.video_ then  
-local test = database:get(bot_id..'Text:Sudo:Bot'..msg.sender_user_id_..':'..msg.chat_id_)
-if database:get(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true1' then
-database:del(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_)
+local test = database:get(bot_id.."Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_)
+if database:get(bot_id.."Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true1" then
+database:del(bot_id.."Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_)
 if msg.content_.sticker_ then   
 database:set(bot_id.."Add:Rd:Sudo:stekr"..test, msg.content_.sticker_.sticker_.persistent_id_)  
 end   
@@ -9409,10 +9477,10 @@ if msg.content_.animation_ then
 database:set(bot_id.."Add:Rd:Sudo:Gif"..test, msg.content_.animation_.animation_.persistent_id_)  
 end  
 if text then   
-text = text:gsub('"','') 
-text = text:gsub("'",'') 
-text = text:gsub('`','') 
-text = text:gsub('*','') 
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
 database:set(bot_id.."Add:Rd:Sudo:Text"..test, text)  
 end  
 if msg.content_.audio_ then
@@ -9439,68 +9507,116 @@ photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
 database:set(bot_id.."Add:Rd:Sudo:Photo"..test, photo_in_group)  
 end
-send(msg.chat_id_, msg.id_,' ℘︙ تم حفظ الرد')
+send(msg.chat_id_, msg.id_,"℘︙تم حفظ الرد بنجاح")
 return false  
 end  
 end
+
+if text == "اضف رد للكل" and DevSoFi(msg) then 
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ℘︙ لا تستطيع استخدام البوت \n  ℘︙ يرجى الاشتراك بالقناه اولا \n  ℘︙ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_,"℘︙ ارسل الكلمه التري تريد اضافتها")
+database:set(bot_id.."Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
+return false 
+end
+if text == "حذف رد للكل" and DevSoFi(msg) then 
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ℘︙ لا تستطيع استخدام البوت \n  ℘︙ يرجى الاشتراك بالقناه اولا \n  ℘︙ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_,"℘︙ ارسل الكلمه التري تريد حذفها")
+database:set(bot_id.."Set:On"..msg.sender_user_id_..":"..msg.chat_id_,true)
+return false 
+end
 if text and text:match("^(.*)$") then
-if database:get(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,' ℘︙ ارسل الرد الذي تريد اضافته')
-database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_, 'true1')
-database:set(bot_id..'Text:Sudo:Bot'..msg.sender_user_id_..':'..msg.chat_id_, text)
-database:sadd(bot_id..'List:Rd:Sudo', text)
+if database:get(bot_id.."Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+send(msg.chat_id_, msg.id_, '℘︙الان ارسل الرد الذي تريد اضافته \n℘︙ قد يكون (ملف - فديو - نص - ملصق - بصمه - متحركه )\n℘︙ يمكنك اضافه الى النص :\n℘︙🌐 `#username` > معرف المستخدم\n℘︙📨 `#msgs` > عدد رسائل المستخدم\n℘︙📎 `#name` > اسم المستخدم\n℘︙🆔 `#id` > ايدي المستخدم\n℘︙🎖 `#stast` > رتبه المستخدم \n℘︙📝 `#edit` > عدد السحكات ')
+database:set(bot_id.."Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
+database:set(bot_id.."Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
+database:sadd(bot_id.."List:Rd:Sudo", text)
 return false end
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,' ℘︙ تم ازالة الرد العام')
+if database:get(bot_id.."Set:On"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+send(msg.chat_id_, msg.id_,"℘︙تم ازالة الرد من قائمه ردود المطور")
 list = {"Add:Rd:Sudo:Audio","Add:Rd:Sudo:File","Add:Rd:Sudo:Video","Add:Rd:Sudo:Photo","Add:Rd:Sudo:Text","Add:Rd:Sudo:stekr","Add:Rd:Sudo:vico","Add:Rd:Sudo:Gif"}
 for k,v in pairs(list) do
-database:del(bot_id..v..text)
+database:del(bot_id..''..v..text)
 end
-database:del(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_)
-database:srem(bot_id..'List:Rd:Sudo', text)
+database:del(bot_id.."Set:On"..msg.sender_user_id_..":"..msg.chat_id_)
+database:srem(bot_id.."List:Rd:Sudo", text)
 return false
 end
 end
-if text == 'اضف رد للكل' and DevSoFi(msg) then 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ℘︙ لا تستطيع استخدام البوت \n  ℘︙ يرجى الاشتراك بالقناه اولا \n  ℘︙ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_,' ℘︙ ارسل الكلمه تريد اضافتها')
-database:set(bot_id..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
-return false 
-end
-if text == 'حذف رد للكل' and DevSoFi(msg) then 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ℘︙ لا تستطيع استخدام البوت \n  ℘︙ يرجى الاشتراك بالقناه اولا \n  ℘︙ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_,' ℘︙ ارسل الكلمه تريد حذفها')
-database:set(bot_id..'Set:On'..msg.sender_user_id_..':'..msg.chat_id_,true)
-return false 
-end
-if text and not database:get(bot_id..'Reply:Sudo'..msg.chat_id_) then
+
+if text and not database:get(bot_id.."Reply:Sudo"..msg.chat_id_) then
 if not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
 local anemi = database:get(bot_id.."Add:Rd:Sudo:Gif"..text)   
 local veico = database:get(bot_id.."Add:Rd:Sudo:vico"..text)   
 local stekr = database:get(bot_id.."Add:Rd:Sudo:stekr"..text)     
-local text1 = database:get(bot_id.."Add:Rd:Sudo:Text"..text)   
+local Text = database:get(bot_id.."Add:Rd:Sudo:Text"..text)   
 local photo = database:get(bot_id.."Add:Rd:Sudo:Photo"..text)
 local video = database:get(bot_id.."Add:Rd:Sudo:Video"..text)
 local document = database:get(bot_id.."Add:Rd:Sudo:File"..text)
 local audio = database:get(bot_id.."Add:Rd:Sudo:Audio"..text)
+
+if Text then 
+tdcli_function({ID="GetUser",user_id_=msg.sender_user_id_},function(arg,data)
+local Msguser = database:get(bot_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_) or 0
+local rtp = Rutba(msg.sender_user_id_,msg.chat_id_)
+local edit = database:get(bot_id..'edits'..msg.chat_id_..msg.sender_user_id_) or 0
+local Text = Text:gsub('#username',(data.username_ or 'لا يوجد')) 
+local Text = Text:gsub('#name',data.first_name_)
+local Text = Text:gsub('#id',msg.sender_user_id_)
+local Text = Text:gsub('#edit',edit)
+local Text = Text:gsub('#msgs',Msguser)
+local Text = Text:gsub('#stast',rtp)
+send(msg.chat_id_, msg.id_,'['..Text..']')
+database:sadd(bot_id.."Spam:Texting"..msg.sender_user_id_,text) 
+end,nil)
+end
+if stekr then 
+sendSticker(msg.chat_id_, msg.id_, 0, 1, nil, stekr)   
+database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
+end
+if veico then 
+sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, veico)   
+database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
+end
+if video then 
+sendVideo(msg.chat_id_, msg.id_, 0, 1, nil,video)
+database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
+end
+if anemi then 
+sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, anemi, '', nil)  
+database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
+end
+if document then
+sendDocument(msg.chat_id_, msg.id_, 0, 1,nil, document)   
+database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
+end  
+if audio then
+sendAudio(msg.chat_id_,msg.id_,audio)  
+database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
+end
+if photo then
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil,photo,'')
+database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
+end  
+end
+end
 ------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
 if database:get(bot_id.."botss:DRAGON:Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
@@ -9541,9 +9657,181 @@ end
 send(msg.chat_id_, msg.id_,"℘︙تم حذف ردود المتعدده")
 end
 ------------------------------------------------------------------------
-if text1 then 
-send(msg.chat_id_, msg.id_,text1)
-database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
+if text == ("مسح ردود المدير") and Manager(msg) then
+local list = database:smembers(bot_id.."List:Manager"..msg.chat_id_.."")
+for k,v in pairs(list) do
+database:del(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Vico"..v..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Stekrs"..v..msg.chat_id_)     
+database:del(bot_id.."Add:Rd:Manager:Text"..v..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Photo"..v..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Video"..v..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_)
+database:del(bot_id.."List:Manager"..msg.chat_id_)
+end
+send(msg.chat_id_, msg.id_,"℘︙تم مسح ردود المدير")
+end
+if text == ("ردود المدير") and Manager(msg) then
+local list = database:smembers(bot_id.."List:Manager"..msg.chat_id_.."")
+text = "℘︙قائمه ردود المدير \nٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n"
+for k,v in pairs(list) do
+if database:get(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_) then
+db = "متحركه 🎭"
+elseif database:get(bot_id.."Add:Rd:Manager:Vico"..v..msg.chat_id_) then
+db = "بصمه 📢"
+elseif database:get(bot_id.."Add:Rd:Manager:Stekrs"..v..msg.chat_id_) then
+db = "ملصق 🏷"
+elseif database:get(bot_id.."Add:Rd:Manager:Text"..v..msg.chat_id_) then
+db = "رساله ✉"
+elseif database:get(bot_id.."Add:Rd:Manager:Photo"..v..msg.chat_id_) then
+db = "صوره 👤"
+elseif database:get(bot_id.."Add:Rd:Manager:Video"..v..msg.chat_id_) then
+db = "فيديو 📹"
+elseif database:get(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_) then
+db = "ملف 📁"
+elseif database:get(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_) then
+db = "اغنيه 🎵"
+end
+text = text..""..k..">> ("..v..") -› {"..db.."}\n"
+end
+if #list == 0 then
+text = "℘︙لا يوجد ردود للمدير"
+end
+send(msg.chat_id_, msg.id_,"["..text.."]")
+end
+if text or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ or msg.content_.audio_ or msg.content_.document_ or msg.content_.photo_ or msg.content_.video_ then  
+local test = database:get(bot_id.."Text:Manager"..msg.sender_user_id_..":"..msg.chat_id_.."")
+if database:get(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true1" then
+database:del(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_)
+if msg.content_.sticker_ then   
+database:set(bot_id.."Add:Rd:Manager:Stekrs"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
+end   
+if msg.content_.voice_ then  
+database:set(bot_id.."Add:Rd:Manager:Vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
+end   
+if msg.content_.animation_ then   
+database:set(bot_id.."Add:Rd:Manager:Gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
+end  
+if text then   
+text = text:gsub('"',"") 
+text = text:gsub('"',"") 
+text = text:gsub("`","") 
+text = text:gsub("*","") 
+database:set(bot_id.."Add:Rd:Manager:Text"..test..msg.chat_id_, text)  
+end  
+if msg.content_.audio_ then
+database:set(bot_id.."Add:Rd:Manager:Audio"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
+end
+if msg.content_.document_ then
+database:set(bot_id.."Add:Rd:Manager:File"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
+end
+if msg.content_.video_ then
+database:set(bot_id.."Add:Rd:Manager:Video"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
+end
+if msg.content_.photo_ then
+if msg.content_.photo_.sizes_[0] then
+photo_in_group = msg.content_.photo_.sizes_[0].photo_.persistent_id_
+end
+if msg.content_.photo_.sizes_[1] then
+photo_in_group = msg.content_.photo_.sizes_[1].photo_.persistent_id_
+end
+if msg.content_.photo_.sizes_[2] then
+photo_in_group = msg.content_.photo_.sizes_[2].photo_.persistent_id_
+end	
+if msg.content_.photo_.sizes_[3] then
+photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
+end
+database:set(bot_id.."Add:Rd:Manager:Photo"..test..msg.chat_id_, photo_in_group)  
+end
+send(msg.chat_id_, msg.id_,"℘︙تم حفظ الرد بنجاح")
+return false  
+end  
+end
+if text == "اضف رد" and Manager(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ℘︙ لا تستطيع استخدام البوت \n  ℘︙ يرجى الاشتراك بالقناه اولا \n  ℘︙ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_,"℘︙ارسل الكلمه التي تريد اضافتها")
+database:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
+return false 
+end
+if text == "حذف رد" and Manager(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ℘︙ لا تستطيع استخدام البوت \n  ℘︙ يرجى الاشتراك بالقناه اولا \n  ℘︙ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_,"℘︙ارسل الكلمه التي تريد حذفها")
+database:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,"true2")
+return false 
+end
+if text and text:match("^(.*)$") then
+if database:get(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
+send(msg.chat_id_, msg.id_, '℘︙الان ارسل الرد الذي تريد اضافته \n℘︙ قد يكون (ملف - فديو - نص - ملصق - بصمه - متحركه )\n℘︙ يمكنك اضافه الى النص :\n℘︙🌐 `#username` > معرف المستخدم\n℘︙📨 `#msgs` > عدد رسائل المستخدم\n℘︙📎 `#name` > اسم المستخدم\n℘︙🆔 `#id` > ايدي المستخدم\n℘︙🎖 `#stast` > رتبه المستخدم \n℘︙📝 `#edit` > عدد السحكات ')
+database:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,"true1")
+database:set(bot_id.."Text:Manager"..msg.sender_user_id_..":"..msg.chat_id_, text)
+database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
+database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
+database:sadd(bot_id.."List:Manager"..msg.chat_id_.."", text)
+return false end
+end
+if text and text:match("^(.*)$") then
+if database:get(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_.."") == "true2" then
+send(msg.chat_id_, msg.id_,"℘︙تم ازالة الرد من قائمه الردود")
+database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
+database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
+database:del(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_)
+database:srem(bot_id.."List:Manager"..msg.chat_id_.."", text)
+return false
+end
+end
+if text and not database:get(bot_id.."Reply:Manager"..msg.chat_id_) then
+if not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
+local anemi = database:get(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
+local veico = database:get(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
+local stekr = database:get(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
+local Text = database:get(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
+local photo = database:get(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
+local video = database:get(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
+local document = database:get(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
+local audio = database:get(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
+if Text then 
+tdcli_function({ID="GetUser",user_id_=msg.sender_user_id_},function(arg,data)
+local Msguser = database:get(bot_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_) or 0
+local rtp = Rutba(msg.sender_user_id_,msg.chat_id_)
+local edit = database:get(bot_id..'edits'..msg.chat_id_..msg.sender_user_id_) or 0
+local Text = Text:gsub('#username',(data.username_ or 'لا يوجد')) 
+local Text = Text:gsub('#name',data.first_name_)
+local Text = Text:gsub('#id',msg.sender_user_id_)
+local Text = Text:gsub('#edit',edit)
+local Text = Text:gsub('#msgs',Msguser)
+local Text = Text:gsub('#stast',rtp)
+send(msg.chat_id_, msg.id_,'['..Text..']')
+database:sadd(bot_id.."Spam:Texting"..msg.sender_user_id_,text) 
+end,nil)
 end
 if stekr then 
 sendSticker(msg.chat_id_, msg.id_, 0, 1, nil, stekr)   
@@ -9575,181 +9863,24 @@ database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text)
 end  
 end
 end
-if text == ("مسح ردود المدير") and Manager(msg) then
-local list = database:smembers(bot_id..'List:Manager'..msg.chat_id_..'')
-for k,v in pairs(list) do
-database:del(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..v..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..v..msg.chat_id_)     
-database:del(bot_id.."Add:Rd:Manager:Text"..v..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..v..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Video"..v..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_)
-database:del(bot_id..'List:Manager'..msg.chat_id_)
-end
-send(msg.chat_id_, msg.id_," ℘︙ تم مسح ردود المدير")
-end
-
-if text == ("ردود المدير") and Manager(msg) then
-local list = database:smembers(bot_id..'List:Manager'..msg.chat_id_..'')
-text = " ℘︙ قائمه ردود المدير \nٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n"
-for k,v in pairs(list) do
-if database:get(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_) then
-db = 'متحركه'
-elseif database:get(bot_id.."Add:Rd:Manager:Vico"..v..msg.chat_id_) then
-db = 'بصمه'
-elseif database:get(bot_id.."Add:Rd:Manager:Stekrs"..v..msg.chat_id_) then
-db = 'ملصق'
-elseif database:get(bot_id.."Add:Rd:Manager:Text"..v..msg.chat_id_) then
-db = 'رساله'
-elseif database:get(bot_id.."Add:Rd:Manager:Photo"..v..msg.chat_id_) then
-db = 'صوره'
-elseif database:get(bot_id.."Add:Rd:Manager:Video"..v..msg.chat_id_) then
-db = 'فيديو'
-elseif database:get(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_) then
-db = 'ملف'
-elseif database:get(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_) then
-db = 'اغنيه'
-end
-text = text..""..k..">> ("..v..") » {"..db.."}\n"
-end
-if #list == 0 then
-text = " ℘︙ لا يوجد ردود للمدير"
-end
-send(msg.chat_id_, msg.id_,'['..text..']')
-end
-if text or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ or msg.content_.audio_ or msg.content_.document_ or msg.content_.photo_ or msg.content_.video_ then  
-local test = database:get(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_..'')
-if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true1' then
-database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_)
-if msg.content_.sticker_ then   
-database:set(bot_id.."Add:Rd:Manager:Stekrs"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
-end   
-if msg.content_.voice_ then  
-database:set(bot_id.."Add:Rd:Manager:Vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
-end   
-if msg.content_.animation_ then   
-database:set(bot_id.."Add:Rd:Manager:Gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
-end  
-if text then   
-text = text:gsub('"','') 
-text = text:gsub("'",'') 
-text = text:gsub('`','') 
-text = text:gsub('*','') 
-database:set(bot_id.."Add:Rd:Manager:Text"..test..msg.chat_id_, text)  
-end  
-if msg.content_.audio_ then
-database:set(bot_id.."Add:Rd:Manager:Audio"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
-end
-if msg.content_.document_ then
-database:set(bot_id.."Add:Rd:Manager:File"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
-end
-if msg.content_.video_ then
-database:set(bot_id.."Add:Rd:Manager:Video"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
-end
-if msg.content_.photo_ then
-if msg.content_.photo_.sizes_[0] then
-photo_in_group = msg.content_.photo_.sizes_[0].photo_.persistent_id_
-end
-if msg.content_.photo_.sizes_[1] then
-photo_in_group = msg.content_.photo_.sizes_[1].photo_.persistent_id_
-end
-if msg.content_.photo_.sizes_[2] then
-photo_in_group = msg.content_.photo_.sizes_[2].photo_.persistent_id_
-end	
-if msg.content_.photo_.sizes_[3] then
-photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
-end
-database:set(bot_id.."Add:Rd:Manager:Photo"..test..msg.chat_id_, photo_in_group)  
-end
-send(msg.chat_id_, msg.id_,' ℘︙ تم حفظ الرد')
-return false  
-end  
-end
-if text and text:match("^(.*)$") then
-if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,' ℘︙ ارسل الرد الذي تريد اضافته')
-database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
-database:set(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_, text)
-database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
-database:sadd(bot_id..'List:Manager'..msg.chat_id_..'', text)
-return false end
-end
-if text and text:match("^(.*)$") then
-if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_..'') == 'true2' then
-send(msg.chat_id_, msg.id_,' ℘︙ تم ازالة الرد ')
-database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
-database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_)
-database:srem(bot_id..'List:Manager'..msg.chat_id_..'', text)
-return false
-end
-end
-if text == 'اضف رد' and Manager(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ℘︙ لا تستطيع استخدام البوت \n  ℘︙ يرجى الاشتراك بالقناه اولا \n  ℘︙ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_,' ℘︙ ارسل الكلمه التي تريد اضافتها')
-database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
-return false 
-end
-if text == 'حذف رد' and Manager(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,' ℘︙ لا تستطيع استخدام البوت \n  ℘︙ يرجى الاشتراك بالقناه اولا \n  ℘︙ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_,' ℘︙ ارسل الكلمه التي تريد حذفها')
-database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true2')
-return false 
-end
-if text and not database:get(bot_id..'Reply:Manager'..msg.chat_id_) then
-if not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
-local anemi = database:get(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-local veico = database:get(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-local stekr = database:get(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-local text1 = database:get(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-local photo = database:get(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-local video = database:get(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-local document = database:get(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-local audio = database:get(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
 ------------------------------------------------------------------------
-if text and text:match("^كول (.*)$") then
+if text and text:match("^كول (.*)$") and not database:get(bot_id.."Speak:after:me"..msg.chat_id_) then
 local Textxt = text:match("^كول (.*)$")
 send(msg.chat_id_, msg.id_, '['..Textxt..']')
 end
-if text == "غنيلي" then
-data,res = https.request('https://forhassan.ml/Black/audios.php')
+
+if text == "غنيلي" and not database:get(bot_id.."sing:for:me"..msg.chat_id_) then
+data,res = https.request('https://black-source.tk/BlackTeAM/audios.php')
 if res == 200 then
 audios = json:decode(data)
 if audios.Info == true then
-local done = download_to_file(audios.info,msg.sender_user_id_..'.mp3')
-sendAudio(msg.chat_id_,msg.id_,'./'..msg.sender_user_id_..'.mp3','اهداء من البوت لك💗','تم اختيار المقطع الصوتي خصيصا لك','end')
-os.execute('rm -rf ./'..msg.sender_user_id_..'.mp3') 
+local Text ='℘︙تم اختيار المقطع الصوتي لك'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '🖨┇𝚂𝙾𝚄𝚁𝙲𝙴𝚂 𝙳𝚁𝙰𝙶𝙾𝙽.',url="t.me/S0DRG"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice='..URL.escape(audios.info)..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 end
 end
@@ -10043,41 +10174,6 @@ send(msg.chat_id_, msg.id_,texting[Textes])
 end
 end
 ------------------------------------------------------------------------
-if text1 then 
-send(msg.chat_id_, msg.id_, text1)
-database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
-end
-if stekr then 
-sendSticker(msg.chat_id_, msg.id_, 0, 1, nil, stekr)   
-database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
-end
-if veico then 
-sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, veico)   
-database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
-end
-if video then 
-sendVideo(msg.chat_id_, msg.id_, 0, 1, nil,video)
-database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
-end
-if anemi then 
-sendDocument(msg.chat_id_, msg.id_, 0, 1,nil, anemi)   
-database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
-end
-if document then
-sendDocument(msg.chat_id_, msg.id_, 0, 1,nil, document)   
-database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
-end  
-if audio then
-sendAudio(msg.chat_id_,msg.id_,audio)  
-database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
-end
-if photo then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil,photo,photo_caption)
-database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
-end  
-end
-end
-
 -------------------------------
 if text == ""..(database:get(bot_id..'Name:Bot') or 'دراكون').." غادر" or text == 'بوت غادر' then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
